@@ -29,6 +29,7 @@ let resolveToComponents = (glob) => {
 let paths = {
   js: resolveToComponents('**/*!(.spec.js).js'), // exclude spec files
   styl: resolveToApp('**/*.styl'), // stylesheets
+  less: resolveToApp('**/*.less'), // stylesheets
   html: [
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
@@ -45,6 +46,13 @@ gulp.task('webpack', () => {
     .pipe(gulp.dest(paths.output));
 });
 
+// use webpack.config.js to build modules
+gulp.task('build', () => {
+  return gulp.src(paths.entry)
+    .pipe(webpack(require('./webpack.prod.config')))
+    .pipe(gulp.dest(paths.output));
+});
+
 gulp.task('serve', () => {
   serve({
     port: process.env.PORT || 3000,
@@ -54,7 +62,7 @@ gulp.task('serve', () => {
 });
 
 gulp.task('watch', () => {
-  let allPaths = [].concat([paths.js], paths.html, [paths.styl]);
+  let allPaths = [].concat([paths.js], paths.html, [paths.less]);
   gulp.watch(allPaths, ['webpack', reload]);
 });
 

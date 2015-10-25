@@ -1,8 +1,8 @@
 {
-  "name": "ng6-starter",
+  "name": "angular-gulp-webpack-less",
   "version": "0.0.1",
-  "description": "Starter for Angular + ES6 + (Webpack or JSPM)",
-  "main": "index.js",
+  "description": "Starter for Angular + ES6 + Webpack + Less",
+  "main": "client/app/app.js",
   "dependencies": {
     "angular": "^1.4.4",
     "angular-ui-router": "^0.2.15",
@@ -26,6 +26,8 @@
     "karma-mocha-reporter": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.4",
     "karma-webpack": "^1.5.1",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.1",
     "mocha": "^2.3.0",
     "node-libs-browser": "^0.5.0",
     "raw-loader": "^0.5.1",
@@ -37,7 +39,9 @@
     "yargs": "^3.9.0"
   },
   "scripts": {
-    "test": "karma start"
+    "serve": "gulp",
+    "test": "karma start",
+    "build": "gulp build"
   },
   "keywords": [
     "angular",
